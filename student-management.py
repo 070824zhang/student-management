@@ -96,6 +96,7 @@ def find_student_by_id(sid):
 
 
 
+
 def updata_student():
     sid = int(input("请输入要修改的学生id："))
     result = find_student_by_id(sid)
@@ -114,7 +115,7 @@ def updata_student():
             return
         update = student_read[idx].strip().split(',')
         print(f"当前信息：姓名：{update[1]},性别：{update[2]},年龄：{update[3]},地址：{update[4]}")
-        choose = input("请输入要修改的字段：1姓名 2性别 3年龄 4地址")
+        choose = input("请输入要修改的字段：1姓名 2性别 3年龄 4地址\n")
         if choose == "1":
             update[1] = input("新姓名：")
         elif choose == "2":
@@ -136,6 +137,25 @@ def updata_student():
 
 
 
+def inquire_student():
+    try:
+        sid = int(input("请输入要查询学生的id："))
+        result = find_student_by_id(sid)
+        if result is None:
+            print("未查询到该学生信息")
+            return
+        print(f"当前查询到的学生信息为：{result.strip()}")
+    except ValueError:
+        print("请输入数字")
+        return
+
+
+
+
+
+
+
+
 def main():
     while True:
         print("欢迎进入学生信息管理系统，请选择操作，输入1增加学生信息,输入2删除学生信息，输入3修改学生信息，输入4查询学生信息")
@@ -147,8 +167,9 @@ def main():
         elif num == 3:
             updata_student()
         elif num == 4:
-            print("查询功能待实现")
+            inquire_student()
         else:
+            print("您已退出学生信息管理系统")
             break
 
 
